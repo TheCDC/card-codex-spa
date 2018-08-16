@@ -1,0 +1,41 @@
+.cardContainer {
+	border: 1px solid black;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: auto;
+	font-size: small;
+
+}
+
+.cardContainer > div{
+	margin-right: auto;
+	margin-left: 0em;
+	width: 50%;
+	text-align: left;
+}
+
+.cardTitle{
+	font-size: medium;
+}
+
+.legalities > div {
+	text-align: left;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+
+}
+
+.legalities > div > .format{
+}
+
+
+.legalities > div > .legality{
+
+	margin-left: 0.25em;
+	margin-right: auto;
+}

@@ -1,0 +1,19 @@
+<div *ngIf="card" class="cardContainer">
+  <div>
+    <div class="cardTitle"><a [routerLink]="['/similar', card.name, 1]">{{card.name}}</a> <span class="manaCost">{{card.manaCost}}</span></div>
+    
+    <div class="types">type: {{card.type}}</div>
+    <div class="set">set: {{card.set.name}}</div>
+    <div class="rulesText">Text: <div>{{card.text}}</div></div>
+    <span *ngIf="card.power">
+      <span *ngIf="card.toughness">
+        <div class="stats">{{card.power}} / {{card.toughness}} </div>
+      </span>
+    </span>
+  </div>
+  <div class="legalities">legalities:
+    <div *ngFor="let legality of card.legalities">
+      <span class="format">{{legality.format}}:</span><span class="legality"> {{legality.legality}}</span>
+    </div>
+  </div>
+</div>

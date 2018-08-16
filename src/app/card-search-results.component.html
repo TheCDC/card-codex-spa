@@ -1,0 +1,38 @@
+<div *ngIf="card" id="search-results-component">
+	<h2> Search Results (pg. {{page}})</h2>
+	<div>
+		<h2>
+		Your Card
+		</h2>
+		<card-display [card]="card" ></card-display>
+	</div>
+	<div>
+		<h2>
+		Similar Cards
+		</h2>
+		<nav>
+			<button (click)="goBack()">Back to search</button>
+			
+			<button *ngIf="page-1>0" [routerLink]="['../', (page)-1]">Previous ({{page-1}})</button>
+			<div>
+				( {{page}} )
+			</div>
+			<button [routerLink]="['../', (page)+1]">Next ({{page+1}})</button>
+		</nav>
+		<div *ngIf="isLoading">
+			<div id="spinningSquaresG">
+				<div id="spinningSquaresG_1" class="spinningSquaresG"></div>
+				<div id="spinningSquaresG_2" class="spinningSquaresG"></div>
+				<div id="spinningSquaresG_3" class="spinningSquaresG"></div>
+				<div id="spinningSquaresG_4" class="spinningSquaresG"></div>
+				<div id="spinningSquaresG_5" class="spinningSquaresG"></div>
+				<div id="spinningSquaresG_6" class="spinningSquaresG"></div>
+				<div id="spinningSquaresG_7" class="spinningSquaresG"></div>
+				<div id="spinningSquaresG_8" class="spinningSquaresG"></div>
+			</div>
+		</div>
+		<cards-list [cards]="cards"></cards-list>
+	</div>
+	
+	<button (click)="goBack()">Back to search</button>
+</div>

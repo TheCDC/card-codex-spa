@@ -1,0 +1,33 @@
+<div id="search-component">
+  <h1>Cards!</h1>
+  <div>
+    <h2>Search</h2>
+    <div>
+
+      <input #searchBox id="search-box" (keyup)="filter(searchBox.value)" />
+
+      <div *ngIf="searchInProgress">
+        <div id="bowlG">
+          <div id="bowl_ringG">
+            <div class="ball_holderG">
+              <div class="ballG">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div *ngIf="searchBox.value">
+        <div>
+            <ul>
+              <li *ngFor="let name of filteredNames| async">
+                <a [routerLink]="['/similar', name,1]">
+                  {{name}}
+                </a>
+              </li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
