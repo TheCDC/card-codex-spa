@@ -42,7 +42,7 @@ export class CardSearchComponent implements OnInit {
   }
   ngOnInit(): void {
 
-      this.filteredNames = this.nameFilter.debounceTime(100).switchMap(name => {
+      this.filteredNames = this.nameFilter.debounceTime(300).switchMap(name => {
         this.searchInProgress = false;
 
         return this.cardSearchService.filter(name);
