@@ -33,7 +33,21 @@ export class CardSearchService implements OnInit{
 		'Access-Control-Allow-Origin':'*',
 		'Content-Type': 'application/json',
 	});
-	constructor(private http: Http ){}
+	constructor(private http: Http ){
+
+		this.getAllCardNames().then(
+		names => 
+			 {
+				 this.allCardNames = names;
+				console.log('done downloading all card names');
+				console.log('some card names:' + this.allCardNames.slice(0,10));
+				this.allCardNames = names;
+				return names;
+
+
+			 }).catch(this.handleError);
+
+	}
 
 	handleError(error: any):Promise<any>{
 		console.error('An error occurred', error);
@@ -41,71 +55,41 @@ export class CardSearchService implements OnInit{
 
 	}
 
-	getAllCardNames():void {
+	getAllCardNames():Promise<string[]> {
 		//download list of card names to use for auto-suggest as user types
 
+		console.log('download all card names');
 
+		return this.http.get('http://card-codex-clone.herokuapp.com/static/card_commander_cardlist.txt').toPromise().then(response =>{
 
-		this.http.get('http://card-codex-clone.herokuapp.com/static/card_commander_cardlist.txt').toPromise().then(
-		response => 
-			 {
 				 let names  = response.text().split('\n');
-				 this.allCardNames = names;
-			 }
-		).catch(this.handleError);
+				 return names;
+
+		});
+		
+
 	}
 	ngOnInit(): void{
-		this.getAllCardNames();
+		
 
-		this.filtered = this.nameFilter
-		.distinctUntilChanged()
-		.switchMap(name => {
-			let found: string[] = [];
+	}
+
+	filter(name: string): Observable<string[]>{
+		this.nameFilter.next(name);
+		console.log('return this.filtered.map');
+
+		let found: string[] = [];
 			for (let item of this.allCardNames){
 				if (item.toLowerCase().indexOf(name.toLowerCase()) === 0){
 						found.push(item);
-
+						console.log(item);
 				}
 				if (found.length >= 50){
 					break;
 				}
 
 			}
-			return Observable.of<string[]>(found);
-
-		})
-		.catch(error => {
-		  // TODO: add real error handling
-		  console.log(error);
-		  return Observable.of<string[]>([]);
-		});
-
-	}
-
-	filter(name: string): Observable<string[]>{
-		this.nameFilter.next(name);
-		return this.filtered;
-		/*
-		this.filtered = [];
-		this.filterSubscription = this.getAllCardNames().subscribe(names =>{
-			for (let item of names){
-			if (item.toLowerCase().indexOf(name.toLowerCase()) === 0){
-					this.filtered.push(item);
-
-				}
-				if (this.filtered.length >= 10){
-					break;
-				}
-
-			}
-			
-			return this.filtered;
-		})
-		//this.filterSubscription.unsubscribe();
-		return Observable.of<string[]>(this.filtered);
-			*/
-
-
+		return Observable.of<string[]>(found);
 
 	}
 	searchSimilar(name: string, page: number = 1): Observable<SearchResult>{
