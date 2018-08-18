@@ -1,6 +1,6 @@
 <div *ngIf="card" class="cardContainer">
-  <div>
-    <div class="cardTitle"><a [routerLink]="['/similar', card.name, 1]">{{card.name}}</a> <span class="manaCost">{{card.manaCost}}</span></div>
+  <div class="card">
+    <div class="cardTitle"><a [routerLink]="['/similar', card.name, 1]">{{card.name}}</a> <span class="manaCost">{{card.manaCost}}</span> </div>
     
     <div class="types">type: {{card.type}}</div>
     <div class="set">set: {{card.set.name}}</div>
@@ -10,6 +10,11 @@
         <div class="stats">{{card.power}} / {{card.toughness}} </div>
       </span>
     </span>
+  </div>
+  <div>
+    <a href="https://scryfall.com/search?q=!'{{card.name}}'">
+      Scryfall
+    </a>
   </div>
   <div class="legalities">legalities:
     <div *ngFor="let legality of card.legalities">

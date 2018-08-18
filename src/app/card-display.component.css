@@ -12,8 +12,14 @@
 .cardContainer > div{
 	margin-right: auto;
 	margin-left: 0em;
-	width: 50%;
 	text-align: left;
+	flex-grow: 1;
+}
+
+.card{
+	width: 50%;
+	flex-grow: 0;
+
 }
 
 .cardTitle{
