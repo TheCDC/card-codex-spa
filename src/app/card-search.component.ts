@@ -35,29 +35,24 @@ export class CardSearchComponent implements OnInit {
     ) {
 
 
-      this.filteredNames = this.nameFilter.debounceTime(300).switchMap(name => {
-        console.log('this.nameFilter.debounceTime(300');
-          this.searchInProgress = false;
-          //return Observable.of<string[]>([]);
-          
-          console.log('return this.cardSearchService.filter(name);')
-          let val = this.cardSearchService.filter(name);
-          if (val === undefined){
-            console.error('Val is undefined???');
-          }
-          else{
-            console.log('val:'+JSON.stringify(val));
-          }
-          return val;
-        })
+      this.filteredNames = this.nameFilter.debounceTime(10).switchMap(name => {
+        this.searchInProgress = false;
+        //return Observable.of<string[]>([]);
         
-        .catch(error => {
-          //console.error(error);
-          this.searchInProgress = false;
-          return Observable.of<string[]>([]);
+        let val = this.cardSearchService.filter(name);
+        if (val === undefined){
+          console.error('Val is undefined???');
+        }
+        return val;
+      })
+      
+      .catch(error => {
+        //console.error(error);
+        this.searchInProgress = false;
+        return Observable.of<string[]>([]);
 
       });
-    
+
     }
 
   filter (name: string):void{

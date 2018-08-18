@@ -23,7 +23,7 @@ export class SearchResult{
 }
 
 @Injectable()
-export class CardSearchService implements OnInit{
+export class CardSearchService {
 	allCardNames: string[] = [];
 	filtered: Observable<string[]>;
 	nameFilter: Subject<string> = new Subject<string>();
@@ -34,7 +34,6 @@ export class CardSearchService implements OnInit{
 		'Content-Type': 'application/json',
 	});
 	constructor(private http: Http ){
-
 		this.getAllCardNames().then(
 		names => 
 			 {
@@ -60,29 +59,22 @@ export class CardSearchService implements OnInit{
 
 		console.log('download all card names');
 
-		return this.http.get('http://card-codex-clone.herokuapp.com/static/card_commander_cardlist.txt').toPromise().then(response =>{
+		return this.http.get('https://card-codex-clone.herokuapp.com/static/card_commander_cardlist.txt').toPromise().then(response =>{
 
-				 let names  = response.text().split('\n');
-				 return names;
+			 let names  = response.text().split('\n');
+			 return names;
 
 		});
-		
-
-	}
-	ngOnInit(): void{
 		
 
 	}
 
 	filter(name: string): Observable<string[]>{
 		this.nameFilter.next(name);
-		console.log('return this.filtered.map');
-
 		let found: string[] = [];
 			for (let item of this.allCardNames){
 				if (item.toLowerCase().indexOf(name.toLowerCase()) === 0){
 						found.push(item);
-						console.log(item);
 				}
 				if (found.length >= 50){
 					break;
