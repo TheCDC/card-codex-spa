@@ -15,10 +15,13 @@ import { CardSearchService, SearchResult  } from './card-search.service';
 export class CardSearchResultsComponent implements OnInit, OnDestroy{
 	@Input() card: Card;
 	@Input() cards: Card[];
+	name:string = '';
 	page: number = 1;
+	colorIdentity: string = '';
 	json = JSON;
 	isLoading : boolean = false;
-	subscription;
+	subscriptions = [];
+
 	constructor(
 	    private cardSearchService: CardSearchService,
 
@@ -29,34 +32,73 @@ export class CardSearchResultsComponent implements OnInit, OnDestroy{
 	) {}
 
 	ngOnInit():void{
-		this.subscription = this.route.params.subscribe(params => {
+		let sub = this.route.queryParams.subscribe((params: Params) => {
+			this.isLoading = true;
+
+			if (params['ci'] !== undefined) {
+				this.colorIdentity = params['ci'];
+				console.log("ci=",this.colorIdentity);
+			}
+			this.query();
+		});
+		this.subscriptions.push(sub);
+
+		sub = this.route.params.subscribe((params: Params) => {
 			this.isLoading = true;
 			console.log(params);
 				let name = '';
 				if (params['name'] !== undefined) {
-					name = params['name'];
+					this.name = params['name'];
 					
 				}
 				if (params['page'] !== undefined) {
 					this.page = +params['page'];
 				}
 
-				this.cardSearchService.searchSimilar(name,this.page)
-				.toPromise()
-				.then(obj =>{
-						this.isLoading = false;
-						this.cards = obj.results;
-						this.card = obj.card;
-				});
+				if (params['ci'] !== undefined) {
+					this.colorIdentity = params['ci'];
+					console.log("ci=",this.colorIdentity);
+				}
+
+				this.query();
+			
 		});
+		this.subscriptions.push(sub);
+
+
       
 	}
-	ngOnDestroy(): void{
-		this.subscription.unsubscribe();
+
+	query():void{
+
+		this.cardSearchService.searchSimilar(this.name, this.page, this.colorIdentity)
+					.toPromise()
+					.then(obj =>{
+							this.cards = obj.results;
+							this.card = obj.card;
+							this.isLoading = false;
+					});
 	}
+	ngOnDestroy(): void{
+		for (let sub of this.subscriptions){
+			sub.unsubscribe();
+		}
+	}
+
+	previousPage():void{
+		this.page -= 1;
+		this.go();
+	}
+
+	go():void{
+		this.router.navigate(['/similar',this.name,this.page,{'ci':this.colorIdentity}]);
+	
+	}
+
 
 	nextPage():void{
 		this.page += 1;
+		this.go();
 	}
 
 

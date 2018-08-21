@@ -84,8 +84,15 @@ export class CardSearchService {
 		return Observable.of<string[]>(found);
 
 	}
-	searchSimilar(name: string, page: number = 1): Observable<SearchResult>{
-		let url: string = `https://card-codex-clone.herokuapp.com/api/?card=${name}&page=${page}`;
+	searchSimilar(name: string, page: number = 1, colorIdentity: string=''): Observable<SearchResult>{
+
+		let url: string = `https://card-codex-clone.herokuapp.com/api/?card=${name}&page=${page}&ci=${colorIdentity}`;
+
+		if (colorIdentity.length > 0){
+			url += ``;
+		}
+
+		console.log(name + ' ' + page + ' ' + colorIdentity + ' ' +url);
 
 		return this.http.get(url,)
 			.map(response => {
