@@ -1,3 +1,26 @@
+.colorToggleButton{
+	text-align: center;
+	width: 2em;
+	height: 2em;
+	font-size: large;
+	background-color: #FFAAAA;
+	border-radius: 0.5em;
+	border: 1px solid gray;
+}
+
+.colorSelected{
+	background-color: #AAFFAA;
+
+}
+
+
+.searchOptions{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+/*===================*/
+
 #bowlG{
 	position:relative;
 	width:58px;

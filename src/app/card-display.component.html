@@ -1,24 +1,44 @@
 <div *ngIf="card" class="cardContainer">
-  <div class="card">
-    <div class="cardTitle"><a [routerLink]="['/similar', card.name, 1]">{{card.name}}</a> <span class="manaCost">{{card.manaCost}}</span> </div>
-    
-    <div class="types">type: {{card.type}}</div>
-    <div class="set">set: {{card.set.name}}</div>
-    <div class="rulesText">Text: <div>{{card.text}}</div></div>
-    <span *ngIf="card.power">
-      <span *ngIf="card.toughness">
-        <div class="stats">{{card.power}} / {{card.toughness}} </div>
-      </span>
-    </span>
-  </div>
-  <div>
-    <a href="https://scryfall.com/search?q=!'{{card.name}}'">
-      Scryfall
-    </a>
-  </div>
-  <div class="legalities">legalities:
-    <div *ngFor="let legality of card.legalities">
-      <span class="format">{{legality.format}}:</span><span class="legality"> {{legality.legality}}</span>
+    <div class="card">
+        
+        <div class="cardTitle">
+            <span class="colorIdentity">
+                <div *ngIf="this.card.colorIdentity?.length>0" class="colorIdentitySymbols">
+                    <span *ngFor ="let symbol of this.card.colorIdentity" class="colorSymbol colorSymbol{{symbol}}">
+                    </span>
+                </div>
+                <div *ngIf="!this.card.colorIdentity?.length > 0" class="colorIdentitySymbols">
+                </div>
+            </span>
+            <a [routerLink]="['/similar', card.name, 1]">{{card.name}}</a> <span class="manaCost">{{card.manaCost}}</span>
+        </div>
+        <div class="typeLine">
+            <span class="types">type: {{card.type}} </span>
+            <span> | </span>
+            <span class="set">set: {{card.set.name}} </span>
+        </div>
+        <div class="rulesText" [innerHTML]="card.text.replace('\n','<br>') "></div>
+        <div *ngIf="card.power && card.toughness" class="powerToughness">
+            <div class="stats">{{card.power}} / {{card.toughness}} </div>
+        </div>
     </div>
-  </div>
+    <div class="sideBar">
+        <div>
+            Links
+        </div>
+        <div class="externalLinks">
+            <a href="https://scryfall.com/search?q=!'{{card.name}}'">
+                Scryfall
+            </a>
+            <a href="http://gatherer.wizards.com/Pages/Search/Default.aspx?action=advanced&name=+[{{card.name}}]">
+                Gatherer
+            </a>
+        </div>
+        <div class="legalities">legalities:
+            <div *ngFor="let legality of card.legalities">
+                <span class="format">{{legality.format}}:</span><span class="legality"> {{legality.legality}}</span>
+            </div>
+        </div>
+    </div>
+    
 </div>

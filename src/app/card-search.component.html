@@ -1,32 +1,40 @@
 <div id="search-component">
   <h1>Cards!</h1>
-  <div>
-    <h2>Search</h2>
+  <div class="searchOptions">
     <div>
-
+      <h2>Search</h2>
       <input #searchBox id="search-box" (keyup)="filter(searchBox.value)" />
-
-      <div *ngIf="searchInProgress">
-        <div id="bowlG">
-          <div id="bowl_ringG">
-            <div class="ball_holderG">
-              <div class="ballG">
-              </div>
-            </div>
+    </div>
+    <div>
+      <h2>
+      Filter by color identity
+      </h2>
+      <button class="colorToggleButton" [ngClass]="{'colorSelected':selectedColors.has(color)}" *ngFor="let color of colors" (click)="toggleColor(color)">
+      {{color}}
+      </button>
+    </div>
+    
+  </div>
+  <div *ngIf="searchInProgress">
+    <div id="bowlG">
+      <div id="bowl_ringG">
+        <div class="ball_holderG">
+          <div class="ballG">
           </div>
         </div>
       </div>
-      <div *ngIf="searchBox.value">
-        <div>
-            <ul>
-              <li *ngFor="let name of filteredNames | async">
-                <a [routerLink]="['/similar', name,1]">
-                  {{name}}
-                </a>
-              </li>
-            </ul>
-        </div>
-      </div>
     </div>
+  </div>
+  <div class="filteredNames"  *ngIf="searchBox.value">
+    <h2>
+    Filtered
+    </h2>
+    <ul>
+      <li *ngFor="let name of filteredNames | async">
+        <button (click)="userSearchFor(name);">
+          {{name}}
+        </button>
+      </li>
+    </ul>
   </div>
 </div>

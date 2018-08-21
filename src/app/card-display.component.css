@@ -1,40 +1,166 @@
+
 .cardContainer {
-	border: 1px solid black;
+	min-width: 20em;
+
+
+	border: 1px solid gray;
 	display: flex;
 	flex-direction: row;
+	flex-grow: 0;
 	flex-wrap: wrap;
 	justify-content: center;
-	width: auto;
 	font-size: medium;
+	margin-bottom: 1em;
+    background-color: #f7f7f7;
 
+
+	box-shadow: 0.5em 0.5em 1em rgba(0, 0, 0, 0.1);
+	transition: box-shadow 0.5s;
+	border-bottom-right-radius: 0.3em;
+	border-bottom-left-radius: 0.3em;
+}
+
+.cardContainer:hover {
+  box-shadow: 0.5em 0.5em 1em rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.5s;
 }
 
 .cardContainer > div{
-	margin-right: auto;
-	margin-left: 0em;
 	text-align: left;
 	flex-grow: 1;
+
 }
 
-.card{
-	width: 50%;
-	flex-grow: 0;
+.card {
+	padding: 0px;
+	margin: 0px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	flex-grow: 1;
+	flex-basis: 0;
+}
+
+.sideBar{
+	border-left: 1px solid black;
+	padding: 0.1em;
+	flex-shrink: 1;
+	flex-basis: 0;
+	flex-grow: 1;
+
+
+}
+
+.sideBar > .externalLinks{
+	text-align: center;
+	border-bottom: 0.1em solid rgba(0,0,0,0.5);
+	padding: 0.1em;
+	display: flex;
+	flex-direction: column;
+
+}
+
+.colorIdentity{
+	margin-right: 0.1em;
+    background-color: #cecece;
+    padding: 0.3em;
+    border-bottom-left-radius: 0.7em;
+    border-bottom-right-radius: 0.7em;
+    margin-bottom: 0.3em;
+    height: 1em;
+}
+
+.colorIdentity > .colorIdentitySymbols{
+	text-align: center;
+	padding: 0px;
+	display: flex;
+	min-width: 5em;
+
 
 }
 
 .cardTitle{
 	font-size: medium;
+	display: flex;
+	justify-content: space-between;
+}
+
+.typeLine{
+	display: flex;
+	justify-content: space-between;
+	padding: 0.25em;
+	background-color: #e5e5e5;
+
+}
+
+.typeLine > span{
+	white-space: nowrap;
+
+}
+
+
+.rulesText{
+	padding: 0.1em;
+	flex-grow: 0;
+	flex-shrink: 1;
+	flex-basis: 0%;
+}
+
+.powerToughness{
+	padding: 0.25em;
+	text-align: right;
+	background-color: #e5e5e5;
+	width: auto;
+
+}
+
+.colorSymbol{
+	border-radius: 1em;
+	min-width: 1em;
+	flex-shrink: 0;
+	height: 1em;
+}
+
+.transparent{
+	background-color: rgba(0,0,0,0);
+}
+
+.colorSymbolW{
+	background-color: #FFF9D6;
+}
+.colorSymbolU{
+	background-color: #5EBEFF;
+}
+.colorSymbolB{
+	background-color: #555555;
+}
+.colorSymbolR{
+	background-color: #FF0000;
+}
+.colorSymbolG{
+	background-color: #1FAA00;
+}
+
+.legalities{
+	display: flex;
+
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+
+
+
 }
 
 .legalities > div {
 	text-align: left;
 	width: 100%;
 	display: flex;
-	flex-direction: row;
 	justify-content: space-between;
 
 
 }
+
 
 .legalities > div > .format{
 }
@@ -45,3 +171,5 @@
 	margin-left: 0.25em;
 	margin-right: auto;
 }
+
+

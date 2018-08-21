@@ -10,14 +10,14 @@
 		<h2>
 		Similar Cards
 		</h2>
-		<nav>
+		<nav class="navigation">
 			<button (click)="goBack()">Back to search</button>
 			
-			<button *ngIf="page-1>0" [routerLink]="['../', (page)-1]">Previous ({{page-1}})</button>
+			<button *ngIf="page-1>0" (click)="previousPage()">Previous ({{page-1}})</button>
 			<div>
 				( {{page}} )
 			</div>
-			<button [routerLink]="['../', (page)+1]">Next ({{page+1}})</button>
+			<button (click)="nextPage()">Next ({{page+1}})</button>
 		</nav>
 		<div *ngIf="isLoading">
 			<div id="spinningSquaresG">
@@ -32,7 +32,15 @@
 			</div>
 		</div>
 		<cards-list [cards]="cards"></cards-list>
+		<nav>
+			<button (click)="goBack()">Back to search</button>
+			
+			<button *ngIf="page-1>0" (click)="previousPage()">Previous ({{page-1}})</button>
+			<div>
+				( {{page}} )
+			</div>
+			<button (click)="nextPage()">Next ({{page+1}})</button>
+		</nav>
 	</div>
 	
-	<button (click)="goBack()">Back to search</button>
 </div>

@@ -1,3 +1,10 @@
+nav{
+	display: flex;
+	justify-content: center;
+	font-size: medium;
+	margin-bottom: 1em;
+}
+/*==========================*/
 #spinningSquaresG{
 	position:relative;
 	width:720px;
