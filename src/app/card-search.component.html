@@ -4,6 +4,28 @@
     <div>
       <h2>Search</h2>
       <input #searchBox id="search-box" (keyup)="filter(searchBox.value)" />
+      <div *ngIf="searchInProgress">
+        <div id="bowlG">
+          <div id="bowl_ringG">
+            <div class="ball_holderG">
+              <div class="ballG">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="filteredNames" *ngIf="searchBox.value && !selectedCard.length">
+        <h2>
+        Filtered
+        </h2>
+        <ul>
+          <li *ngFor="let name of filteredNames | async">
+            <button (click)="selectCard(name);">
+            {{name}}
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
     <div>
       <h2>
@@ -11,40 +33,18 @@
       </h2>
       <div class="colorButtons">
         <button *ngFor="let color of colors" class="colorToggleButton" [ngClass]="{'colorSelected':selectedColors.has(color)}" (click)="toggleColor(color)">
-          {{color}}
+        {{color}}
         </button>
       </div>
     </div>
   </div>
-  <div *ngIf="searchInProgress">
-    <div id="bowlG">
-      <div id="bowl_ringG">
-        <div class="ball_holderG">
-          <div class="ballG">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="filteredNames" *ngIf="searchBox.value && !selectedCard.length">
-    <h2>
-    Filtered
-    </h2>
-    <ul>
-      <li *ngFor="let name of filteredNames | async">
-        <button (click)="selectCard(name);">
-          {{name}}
-        </button>
-      </li>
-    </ul>
-  </div>
-
+  
   <div *ngIf="selectedCard.length">
     <h1>
-      {{selectedCard}}
+    {{selectedCard}}
     </h1>
     <button class="doSearchButton" (click)="doSearch();">
-      SEARCH
+    SEARCH
     </button>
   </div>
 </div>
