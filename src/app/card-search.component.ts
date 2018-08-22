@@ -31,7 +31,7 @@ export class CardSearchComponent implements OnInit {
   previousTerm: string;
   colors:string[] = 'WUBRG'.split('');
   selectedColors: Set<string> = new Set<string>('WUBRG');
-
+  selectedCard: string = '';
 
   constructor(
     private cardSearchService: CardSearchService,
@@ -79,14 +79,24 @@ export class CardSearchComponent implements OnInit {
     }
 
   filter (name: string):void{
+      this.selectedCard = '';
       this.searchInProgress = true;
   // Push a search term into the observable stream.
 
       this.nameFilter.next(name);
   }
 
+  selectCard(name: string): void{
+    this.selectedCard = name;
+  }
+
   userSearchFor(name: string): void{
     this.router.navigate(['/similar', name, 1,{'ci':this.getSelectedColorsString()}]);
+  }
+
+  doSearch(): void{
+    this.router.navigate(['/similar', this.selectedCard, 1,{'ci':this.getSelectedColorsString()}]);
+
   }
   
   ngOnInit(): void {

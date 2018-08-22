@@ -26,16 +26,25 @@
       </div>
     </div>
   </div>
-  <div class="filteredNames" *ngIf="searchBox.value">
+  <div class="filteredNames" *ngIf="searchBox.value && !selectedCard.length">
     <h2>
     Filtered
     </h2>
     <ul>
       <li *ngFor="let name of filteredNames | async">
-        <button (click)="userSearchFor(name);">
+        <button (click)="selectCard(name);">
           {{name}}
         </button>
       </li>
     </ul>
+  </div>
+
+  <div *ngIf="selectedCard.length">
+    <h1>
+      {{selectedCard}}
+    </h1>
+    <button class="doSearchButton" (click)="doSearch();">
+      SEARCH
+    </button>
   </div>
 </div>
