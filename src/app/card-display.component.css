@@ -92,6 +92,11 @@
 	background-color: #e5e5e5;
 
 }
+.typeLine > span{
+
+	padding-left: 0.1em; 
+	padding-right: 0.1em; 
+}
 
 .typeLine > span{
 	white-space: nowrap;

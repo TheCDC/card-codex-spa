@@ -7,11 +7,13 @@
     </div>
     <div>
       <h2>
-      Filter by color identity
+      Color identity
       </h2>
-      <button class="colorToggleButton" [ngClass]="{'colorSelected':selectedColors.has(color)}" *ngFor="let color of colors" (click)="toggleColor(color)">
+      <div class="colorButtons">
+      <button *ngFor="let color of colors" class="colorToggleButton" [ngClass]="{'colorSelected':selectedColors.has(color)}" (click)="toggleColor(color)">
       {{color}}
       </button>
+    </div>
     </div>
     
   </div>

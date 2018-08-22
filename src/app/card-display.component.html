@@ -13,9 +13,9 @@
             <a [routerLink]="['/similar', card.name, 1]">{{card.name}}</a> <span class="manaCost">{{card.manaCost}}</span>
         </div>
         <div class="typeLine">
-            <span class="types">type: {{card.type}} </span>
+            <span class="types">{{card.type}} </span>
             <span> | </span>
-            <span class="set">set: {{card.set.name}} </span>
+            <span class="set">{{card.set.name}} ({{card.set.code}}) </span>
         </div>
         <div class="rulesText" [innerHTML]="card.text.replace('\n','<br>') "></div>
         <div *ngIf="card.power && card.toughness" class="powerToughness">
