@@ -37,7 +37,10 @@
                 Gatherer
             </a>
         </div>
-        <div class="legalities">legalities:
+        <div class="legalities">
+            <div>
+                Legalities:
+            </div>
             <div *ngFor="let legality of card.legalities">
                 <span class="format">{{legality.format}}:</span><span class="legality"> {{legality.legality}}</span>
             </div>

@@ -34,7 +34,7 @@
 				<div id="spinningSquaresG_8" class="spinningSquaresG"></div>
 			</div>
 		</div>
-		<cards-list [cards]="cards"></cards-list>
+		<cards-list *ngIf="!isLoading" [cards]="cards"></cards-list>
 		<nav class="navigation">
 			<div class="breadcrumbs">
 				<button (click)="goBack()">Back to search</button>
