@@ -13,6 +13,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 export class CardDisplayComponent implements OnInit{
 	@Input() card: Card;
 	colorIdentity: Set<string> = new Set<string>([]);
+	sanitizedName: string = '';
 	SYMBOLTOCOLOR = {
 	  'W': "#FFF9D6",
 	  'U': "#5EBEFF",
@@ -25,9 +26,11 @@ export class CardDisplayComponent implements OnInit{
 	constructor(
 		private cardSearchService: CardSearchService,
 		private router: Router,
-	) {}
+	) {
+	}
 
 	ngOnInit(): void{
+		this.sanitizedName = this.card.name.replace("'","\\'")
 
 	}
 
