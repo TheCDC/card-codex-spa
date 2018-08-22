@@ -62,9 +62,8 @@
 
 .colorIdentity{
 	margin-right: 0.1em;
-    background-color: #cecece;
+    background-color: #e5e5e5;
     padding: 0.3em;
-    border-bottom-left-radius: 0.7em;
     border-bottom-right-radius: 0.7em;
     margin-bottom: 0.3em;
     height: 1em;
@@ -83,6 +82,13 @@
 	font-size: medium;
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 0.5em;
+}
+
+.cardTitle .manaCost{
+	background-color: #e5e5e5;
+    padding: 0.3em;
+    border-bottom-left-radius: 0.7em;
 }
 
 .typeLine{

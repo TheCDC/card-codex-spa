@@ -10,7 +10,10 @@
                 <div *ngIf="!this.card.colorIdentity?.length > 0" class="colorIdentitySymbols">
                 </div>
             </span>
-            <a [routerLink]="['/similar', card.name, 1]">{{card.name}}</a> <span class="manaCost">{{card.manaCost}}</span>
+            <div class="cardName">
+                <button [routerLink]="['/similar', card.name, 1]">{{card.name}}</button>
+            </div>
+            <span class="manaCost">{{card.manaCost}}</span>
         </div>
         <div class="typeLine">
             <span class="types">{{card.type}} </span>
