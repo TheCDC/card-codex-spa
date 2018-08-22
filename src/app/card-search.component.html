@@ -10,10 +10,10 @@
       Color identity
       </h2>
       <div class="colorButtons">
-      <button *ngFor="let color of colors" class="colorToggleButton" [ngClass]="{'colorSelected':selectedColors.has(color)}" (click)="toggleColor(color)">
-      {{color}}
-      </button>
-    </div>
+        <button *ngFor="let color of colors" class="colorToggleButton" [ngClass]="{'colorSelected':selectedColors.has(color)}" (click)="toggleColor(color)">
+        {{color}}
+        </button>
+      </div>
     </div>
     
   </div>
@@ -34,7 +34,7 @@
     <ul>
       <li *ngFor="let name of filteredNames | async">
         <button (click)="userSearchFor(name);">
-          {{name}}
+        {{name}}
         </button>
       </li>
     </ul>
