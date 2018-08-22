@@ -11,11 +11,10 @@
       </h2>
       <div class="colorButtons">
         <button *ngFor="let color of colors" class="colorToggleButton" [ngClass]="{'colorSelected':selectedColors.has(color)}" (click)="toggleColor(color)">
-        {{color}}
+          {{color}}
         </button>
       </div>
     </div>
-    
   </div>
   <div *ngIf="searchInProgress">
     <div id="bowlG">
@@ -27,14 +26,14 @@
       </div>
     </div>
   </div>
-  <div class="filteredNames"  *ngIf="searchBox.value">
+  <div class="filteredNames" *ngIf="searchBox.value">
     <h2>
     Filtered
     </h2>
     <ul>
       <li *ngFor="let name of filteredNames | async">
         <button (click)="userSearchFor(name);">
-        {{name}}
+          {{name}}
         </button>
       </li>
     </ul>

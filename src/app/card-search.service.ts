@@ -71,17 +71,22 @@ export class CardSearchService {
 
 	filter(name: string): Observable<string[]>{
 		this.nameFilter.next(name);
-		let found: string[] = [];
-			for (let item of this.allCardNames){
-				if (item.toLowerCase().indexOf(name.toLowerCase()) === 0){
-						found.push(item);
-				}
-				if (found.length >= 50){
-					break;
-				}
-
+		let head: string[] = [];
+		let tail: string[] = [];
+		for (let item of this.allCardNames){
+			let idx = item.toLowerCase().indexOf(name.toLowerCase());
+			if (idx === 0){
+				head.push(item);
 			}
-		return Observable.of<string[]>(found);
+			else if (idx !== -1){
+				tail.push(item);
+			}
+			if (head.length >= 10){
+				break;
+			}
+
+		}
+		return Observable.of<string[]>(head.concat(tail.slice(0,10)));
 
 	}
 	searchSimilar(name: string, page: number = 1, colorIdentity: string=''): Observable<SearchResult>{

@@ -9,7 +9,7 @@
 	flex-grow: 0;
 	flex-wrap: wrap;
 	justify-content: center;
-	font-size: medium;
+	font-size: smaller;
 	margin-bottom: 1em;
     background-color: #f7f7f7;
 
@@ -90,6 +90,9 @@
 	justify-content: space-between;
 	padding: 0.25em;
 	background-color: #e5e5e5;
+	flex-basis: 0%;
+	flex-wrap: wrap;
+
 
 }
 .typeLine > span{
