@@ -34,9 +34,9 @@ export class CardSearchResultsComponent implements OnInit, OnDestroy{
 	) {
 			console.log('CardSearchResultsComponent instantiated');
 
-			let sub = Observable.combineLatest(this.route.params, this.route.queryParams, (params, qparams) => ({ params, qparams }));
+			let subMaker = Observable.combineLatest(this.route.params, this.route.queryParams, (params, qparams) => ({ params, qparams }));
 
-			sub.subscribe((allParams: Params) => {
+			let sub = subMaker.subscribe((allParams: Params) => {
 				this.isLoading = true;
 
 				if (allParams.qparams['ci'] !== undefined) {
