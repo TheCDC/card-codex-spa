@@ -4,8 +4,8 @@
 	height: 2em;
 	font-size: large;
 	background-color: #FFAAAA;
-	border-radius: 0.5em;
-	border: 1px solid gray;
+	border-radius: 0.25em;
+	border: 0.1em solid #d8d8d8;
 	margin-left: 0.1em;
 	margin-right: 0.1em;
 }

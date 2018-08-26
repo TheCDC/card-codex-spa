@@ -97,7 +97,7 @@ export class CardSearchService {
 			url += ``;
 		}
 
-		console.log(name + ' ' + page + ' ' + colorIdentity + ' ' +url);
+		console.log('name=' + name + ' page=' + page + ' ci=' + colorIdentity + ' ' +url);
 
 		return this.http.get(url,)
 			.map(response => {

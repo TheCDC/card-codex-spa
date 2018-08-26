@@ -1,4 +1,6 @@
 import { Component, Input, OnInit, OnDestroy } from "@angular/core";
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/combineLatest';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import  { Location } from '@angular/common';
 import { Card } from './card'
@@ -13,8 +15,8 @@ import { CardSearchService, SearchResult  } from './card-search.service';
 })
 
 export class CardSearchResultsComponent implements OnInit, OnDestroy{
-	@Input() card: Card;
-	@Input() cards: Card[];
+	card: Card;
+	cards: Card[];
 	name:string = '';
 	page: number = 1;
 	colorIdentity: string = '';
@@ -29,41 +31,40 @@ export class CardSearchResultsComponent implements OnInit, OnDestroy{
 		private location: Location,
 		private router: Router,
 		
-	) {}
+	) {
+			console.log('CardSearchResultsComponent instantiated');
 
-	ngOnInit():void{
-		let sub = this.route.queryParams.subscribe((params: Params) => {
-			this.isLoading = true;
+			let sub = Observable.combineLatest(this.route.params, this.route.queryParams, (params, qparams) => ({ params, qparams }));
 
-			if (params['ci'] !== undefined) {
-				this.colorIdentity = params['ci'];
-				console.log("ci=",this.colorIdentity);
-			}
-			this.query();
-		});
-		this.subscriptions.push(sub);
+			sub.subscribe((allParams: Params) => {
+				this.isLoading = true;
 
-		sub = this.route.params.subscribe((params: Params) => {
-			this.isLoading = true;
-			console.log(params);
-				let name = '';
-				if (params['name'] !== undefined) {
-					this.name = params['name'];
-					
-				}
-				if (params['page'] !== undefined) {
-					this.page = +params['page'];
-				}
-
-				if (params['ci'] !== undefined) {
-					this.colorIdentity = params['ci'];
+				if (allParams.qparams['ci'] !== undefined) {
+					this.colorIdentity = allParams.qparams['ci'];
 					console.log("ci=",this.colorIdentity);
 				}
 
+				let name = '';
+				if (allParams.params['name'] !== undefined) {
+					this.name = allParams.params['name'];
+					
+				}
+				if (allParams.params['page'] !== undefined) {
+					this.page = +allParams.params['page'];
+				}
+
+
 				this.query();
-			
-		});
+
+
+			});
+
 		this.subscriptions.push(sub);
+
+
+	}
+
+	ngOnInit():void{
 
 
       
