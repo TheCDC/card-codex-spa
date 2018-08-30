@@ -3,12 +3,22 @@
 	width: 2em;
 	height: 2em;
 	font-size: large;
-	background-color: #FFAAAA;
+	background-color: #e0e0e0;
 	border-radius: 0.25em;
 	border: 0.1em solid #d8d8d8;
 	margin-left: 0.1em;
 	margin-right: 0.1em;
+	box-shadow: 0.5em 0.5em 1em rgba(0, 0, 0, 0.1);
+	transition: box-shadow 0.5s;
 }
+
+.colorToggleButton:hover{
+	background-color: #FFAAAA;
+	box-shadow: 0.5em 0.5em 1em rgba(0, 0, 0, 0.3);
+	transition: background-color 0.5s;
+}
+
+
 
 .colorSelected{
 	background-color: #AAFFAA;
