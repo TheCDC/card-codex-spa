@@ -11,7 +11,7 @@
                 </div>
             </span>
             <div class="cardName">
-                <button [routerLink]="['/similar', card.name, 1]">{{card.name}}</button>
+                <span [routerLink]="['/similar', card.name, 1]">{{card.name}}</span>
             </div>
             <span class="manaCost">{{card.manaCost}}</span>
         </div>
@@ -25,7 +25,7 @@
             <div class="stats">{{card.power}} / {{card.toughness}} </div>
         </div>
     </div>
-    <div class="sideBar">
+    <div class="sideBar" *ngIf="showsideBar">
         <div>
             Links
         </div>

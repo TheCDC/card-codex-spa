@@ -14,6 +14,7 @@ export class CardDisplayComponent implements OnInit {
 	@Input() card: Card;
 	colorIdentity: Set<string> = new Set<string>([]);
 	sanitizedName: string = '';
+	showSidebar: boolean = false;
 	SYMBOLTOCOLOR = {
 		'W': "#FFF9D6",
 		'U': "#5EBEFF",
@@ -37,6 +38,10 @@ export class CardDisplayComponent implements OnInit {
 	searchThisCard(): void {
 		let link = ['/similar', this.card.name, 1];
 		this.router.navigate(link);
+	}
+	
+	toggleSidebar(): void{
+		this.showSidebar = !this.showSidebar;
 	}
 
 }

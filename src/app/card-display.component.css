@@ -1,5 +1,6 @@
 
 .cardContainer {
+
 	min-width: 20em;
 
 
@@ -12,11 +13,20 @@
 	justify-content: center;
 	font-size: smaller;
 	margin-bottom: 1em;
-    background-color: #f7f7f7;
+
+	color: white;
+    background-color: rgb(116, 116, 116) ;
 
 
 	box-shadow: 0.5em 0.5em 1em rgba(0, 0, 0, 0.1);
 	transition: box-shadow 0.5s;
+}
+
+a {
+	color: white;
+	background-color: darkgray;
+	margin: 0.1em;
+	border-radius: 0.1em;
 }
 
 .cardContainer:hover {
@@ -40,6 +50,17 @@
 	flex-basis: 25%;
 }
 
+.cardName > span{
+	background-color: darkgray;
+	color: white;
+	border-bottom-right-radius: 0.7em;
+	border-bottom-left-radius: 0.7em;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+
+	
+
+}
 .sideBar{
 	border-left: 1px solid black;
 	padding: 0.1em;
@@ -60,7 +81,8 @@
 
 .colorIdentity{
 	margin-right: 0.1em;
-    background-color: #e5e5e5;
+	background-color: darkgray;
+
     padding: 0.3em;
     border-bottom-right-radius: 0.7em;
     margin-bottom: 0.3em;
@@ -68,6 +90,7 @@
 }
 
 .colorIdentity > .colorIdentitySymbols{
+	
 	text-align: center;
 	padding: 0px;
 	display: flex;
@@ -84,7 +107,7 @@
 }
 
 .cardTitle .manaCost{
-	background-color: #e5e5e5;
+
     padding: 0.3em;
     border-bottom-left-radius: 0.7em;
 }
@@ -93,7 +116,7 @@
 	display: flex;
 	justify-content: space-between;
 	padding: 0.25em;
-	background-color: #e5e5e5;
+	background-color: darkgray;
 	flex-wrap: wrap;
 
 
@@ -120,7 +143,8 @@
 .powerToughness{
 	padding: 0.25em;
 	text-align: right;
-	background-color: #e5e5e5;
+	background-color: darkgray;
+
 	width: auto;
 
 }
@@ -173,7 +197,7 @@
 }
 
 .legalities > div:nth-child(2n) {
-	background-color: #d6dcff;
+	background-color: #464958;
 }
 
 
