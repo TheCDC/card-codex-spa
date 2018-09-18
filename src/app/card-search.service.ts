@@ -1,22 +1,22 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
-import { Observable }     from 'rxjs';
+import { Observable } from 'rxjs';
 // Observable class extensions
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
-import { Subject }           from 'rxjs/Subject';
+import { Subject } from 'rxjs/Subject';
 
 
-import { Card }           from './card';
+import { Card } from './card';
 
-export class SearchResult{
+export class SearchResult {
 	card: Card;
 	results: Card[];
-	constructor(_target_card : Card , _similar_cards : Card[]){
+	constructor(_target_card: Card, _similar_cards: Card[]) {
 		this.card = _target_card;
 		this.results = _similar_cards;
 	}
@@ -30,82 +30,81 @@ export class CardSearchService {
 	filterSubscription;
 
 	headers = new Headers({
-		'Access-Control-Allow-Origin':'*',
+		'Access-Control-Allow-Origin': '*',
 		'Content-Type': 'application/json',
 	});
-	constructor(private http: Http ){
+	constructor(private http: Http) {
 		this.getAllCardNames().then(
-		names => 
-			 {
-				 this.allCardNames = names;
+			names => {
+				this.allCardNames = names;
 				console.log('done downloading all card names');
-				console.log('some card names:' + this.allCardNames.slice(0,10));
+				console.log('some card names:' + this.allCardNames.slice(0, 10));
 				this.allCardNames = names;
 				return names;
 
 
-			 }).catch(this.handleError);
+			}).catch(this.handleError);
 
 	}
 
-	handleError(error: any):Promise<any>{
+	handleError(error: any): Promise<any> {
 		console.error('An error occurred', error);
-		return Promise.reject(error.message || error );
+		return Promise.reject(error.message || error);
 
 	}
 
-	getAllCardNames():Promise<string[]> {
+	getAllCardNames(): Promise<string[]> {
 		//download list of card names to use for auto-suggest as user types
 
 		console.log('download all card names');
 
-		return this.http.get('https://card-codex-clone.herokuapp.com/static/card_commander_cardlist.txt').toPromise().then(response =>{
+		return this.http.get('https://card-codex-clone.herokuapp.com/static/card_commander_cardlist.txt').toPromise().then(response => {
 
-			 let names  = response.text().split('\n');
-			 return names;
+			let names = response.text().split('\n');
+			return names;
 
 		});
-		
+
 
 	}
 
-	filter(name: string): Observable<string[]>{
+	filter(name: string): Observable<string[]> {
 		this.nameFilter.next(name);
 		let head: string[] = [];
 		let tail: string[] = [];
-		for (let item of this.allCardNames){
+		for (let item of this.allCardNames) {
 			let idx = item.toLowerCase().indexOf(name.toLowerCase());
-			if (idx === 0){
+			if (idx === 0) {
 				head.push(item);
 			}
-			else if (idx !== -1){
+			else if (idx !== -1) {
 				tail.push(item);
 			}
-			if (head.length >= 10){
+			if (head.length >= 10) {
 				break;
 			}
 
 		}
-		return Observable.of<string[]>(head.concat(tail.slice(0,10)));
+		return Observable.of<string[]>(head.concat(tail.slice(0, 10)));
 
 	}
-	searchSimilar(name: string, page: number = 1, colorIdentity: string=''): Observable<SearchResult>{
+	searchSimilar(name: string, page: number = 1, colorIdentity: string = ''): Observable<SearchResult> {
 
 		let url: string = `https://card-codex-clone.herokuapp.com/api/?card=${name}&page=${page}&ci=${colorIdentity}`;
 
-		if (colorIdentity.length > 0){
+		if (colorIdentity.length > 0) {
 			url += ``;
 		}
 
-		console.log('name=' + name + ' page=' + page + ' ci=' + colorIdentity + ' ' +url);
+		console.log('name=' + name + ' page=' + page + ' ci=' + colorIdentity + ' ' + url);
 
-		return this.http.get(url,)
+		return this.http.get(url)
 			.map(response => {
 				return new SearchResult(
 					response.json().target_card as Card,
 					response.json().similar_cards as Card[],
 				)
-				
+
 			})
 	}
 }

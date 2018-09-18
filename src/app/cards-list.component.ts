@@ -6,13 +6,13 @@ import { CardSearchService } from './card-search.service'
 
 @Component({
 	selector: 'cards-list',
-	templateUrl:'./cards-list.component.html',
-	styleUrls:['./cards-list.component.css']
+	templateUrl: './cards-list.component.html',
+	styleUrls: ['./cards-list.component.css']
 
 })
 
-export class CardsListComponent{
+export class CardsListComponent {
 	@Input() cards: Card[];
-	constructor(){}
+	constructor() { }
 
 }

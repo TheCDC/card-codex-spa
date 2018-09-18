@@ -2,7 +2,7 @@ export class Legality {
 	format: string;
 	legality: string;
 
-	toString(): string{
+	toString(): string {
 		return `${this.format}: ${this.legality}`;
 	}
 
