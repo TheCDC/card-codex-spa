@@ -8,7 +8,7 @@
   flex-wrap: wrap;
   flex-basis: 0%;
   justify-content: center;
-  margin-bottom: 1em;
+  margin: 0.5em;
 
   color: white;
   background-color: rgb(116, 116, 116);
@@ -47,10 +47,9 @@ a {
 .cardName > span {
   background-color: darkgray;
   color: white;
-  border-bottom-right-radius: 0.7em;
-  border-bottom-left-radius: 0.7em;
   padding-left: 0.5em;
   padding-right: 0.5em;
+  padding-bottom: 0.1em;
 }
 .sideBar {
   border-left: 1px solid black;
@@ -85,7 +84,6 @@ a {
 }
 
 .cardTitle {
-  font-size: medium;
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5em;
@@ -94,10 +92,6 @@ a {
 .cardTitle .manaCost {
   padding: 0.3em;
   border-bottom-left-radius: 0.7em;
-}
-
-.cardTitle .cardName > span {
-  padding-bottom: 0.1em;
 }
 
 .typeLine {
@@ -175,9 +169,6 @@ a {
 
 .legalities > div:nth-child(2n) {
   background-color: #464958;
-}
-
-.legalities > div > .format {
 }
 
 .legalities > div > .legality {
