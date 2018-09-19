@@ -36,7 +36,6 @@ a {
 
 .cardContainer > div{
 	text-align: left;
-	flex-grow: 1;
 
 }
 
@@ -59,6 +58,20 @@ a {
 	padding-right: 0.5em;
 
 	
+
+}
+
+.options{
+	flex-basis: 0.1;
+	flex-grow: 0;
+}
+
+.options > div{
+	height: 100%;
+	background-color: rgb(61, 61, 114);
+	width: 3em;
+	padding: 0%;
+
 
 }
 .sideBar{

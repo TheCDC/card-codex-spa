@@ -1,10 +1,10 @@
 <div *ngIf="card" class="cardContainer">
     <div class="card">
-        
+
         <div class="cardTitle">
             <span class="colorIdentity">
                 <div *ngIf="this.card.colorIdentity?.length>0" class="colorIdentitySymbols">
-                    <span *ngFor ="let symbol of this.card.colorIdentity" class="colorSymbol colorSymbol{{symbol}}">
+                    <span *ngFor="let symbol of this.card.colorIdentity" class="colorSymbol colorSymbol{{symbol}}">
                     </span>
                 </div>
                 <div *ngIf="!this.card.colorIdentity?.length > 0" class="colorIdentitySymbols">
@@ -25,7 +25,9 @@
             <div class="stats">{{card.power}} / {{card.toughness}} </div>
         </div>
     </div>
-    <div class="sideBar" *ngIf="showsideBar">
+
+
+    <div class="sideBar" *ngIf="showSidebar">
         <div>
             Links
         </div>
@@ -46,5 +48,8 @@
             </div>
         </div>
     </div>
-    
+    <div class="options">
+        <div (click)="toggleSidebar();"></div>
+    </div>
+
 </div>
