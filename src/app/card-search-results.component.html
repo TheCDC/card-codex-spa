@@ -2,13 +2,13 @@
 	<h2> Search Results (pg. {{page}})</h2>
 	<div>
 		<h2>
-		Your Card
+			Your Card
 		</h2>
 		<card-display [card]="card"></card-display>
 	</div>
 	<div>
 		<h2>
-		Similar Cards
+			Similar Cards
 		</h2>
 		<nav class="navigation">
 			<div class="breadcrumbs">
@@ -40,11 +40,11 @@
 				<button (click)="goBack()">Back to search</button>
 			</div>
 			<div class="pages">
-				<button *ngIf="page-1>0" (click)="previousPage()">Previous ({{page-1}})</button>
+				<button *ngIf="page-1>0" (click)="previousPage()"> &laquo; {{page-1}} </button>
 				<div>
 					( {{page}} )
 				</div>
-				<button (click)="nextPage()">Next ({{page+1}})</button>
+				<button (click)="nextPage()">{{page+1}} &raquo;</button>
 			</div>
 		</nav>
 	</div>
