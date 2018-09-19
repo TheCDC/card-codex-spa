@@ -32,15 +32,16 @@ export class CardSearchResultsComponent implements OnInit, OnDestroy {
     let subMaker = combineLatest(
       this.route.params,
       this.route.queryParams,
-      (params, qparams) => ({ params, qparams })
-    );
-
-    let sub = subMaker.subscribe((allParams: Params) => {
+      (params, qparams) => {
+        return { params: params, qparams: qparams };
+      }
+    ).subscribe((allParams: Params) => {
       this.isLoading = true;
 
       if (allParams.qparams["ci"] !== undefined) {
-        this.colorIdentity = allParams.qparams["ci"];
-        console.log("ci=", this.colorIdentity);
+        this.colorIdentity = allParams.qparams["ci"].trim();
+      } else {
+        console.error("ci undefined!");
       }
 
       let name = "";
@@ -50,11 +51,10 @@ export class CardSearchResultsComponent implements OnInit, OnDestroy {
       if (allParams.params["page"] !== undefined) {
         this.page = +allParams.params["page"];
       }
-
+      if (this.page && this.name && this.colorIdentity) {
+      }
       this.query();
     });
-
-    this.subscriptions.push(sub);
   }
 
   ngOnInit(): void {}
@@ -81,12 +81,9 @@ export class CardSearchResultsComponent implements OnInit, OnDestroy {
   }
 
   go(): void {
-    this.router.navigate([
-      "/similar",
-      this.name,
-      this.page,
-      { ci: this.colorIdentity }
-    ]);
+    this.router.navigate(["/similar", this.name, this.page], {
+      queryParams: { ci: this.colorIdentity }
+    });
   }
 
   nextPage(): void {
