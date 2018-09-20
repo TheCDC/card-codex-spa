@@ -1,12 +1,10 @@
 .cardContainer {
   min-width: 20em;
 
-  border: 1px solid gray;
   display: flex;
-  flex-direction: row;
-  flex-grow: 0;
+  flex-direction: column;
   flex-wrap: wrap;
-  flex-basis: 0%;
+  flex-grow: 1;
   justify-content: center;
   margin-bottom: 0.5em;
 
@@ -29,14 +27,11 @@ a {
   transition: box-shadow 0.5s;
 }
 
-.cardContainer > div{
-	text-align: left;
-
+.cardContainer > div {
+  text-align: left;
 }
 
 .card {
-  padding: 0px;
-  margin: 0px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -52,28 +47,31 @@ a {
   padding-bottom: 0em;
   margin-bottom: 0em;
   text-align: center;
-  
 }
 
-.options{
-	flex-basis: 0.1;
-	flex-grow: 0;
+.options {
+  height: 100%;
+  padding-top: 0.2em;
 }
 
-.options > div{
-	height: 100%;
-	background-color: rgb(61, 61, 114);
-	width: 3em;
-	padding: 0%;
-
-
+.options > .option {
+  border-top-right-radius: 0.5em;
+  padding: 0.2em;
 }
-.sideBar{
-	border-left: 1px solid black;
-	padding: 0.1em;
-	flex-basis: 25%;
-	flex-grow: 1;
 
+.unselectedOption {
+  background-color: rgb(74, 74, 141);
+}
+.selectedOption {
+  background-color: rgb(141, 101, 74);
+}
+
+.sideBar {
+  border-left: 1px solid black;
+  padding: 0.1em;
+  flex-basis: 25%;
+  flex-grow: 1;
+}
 
 .sideBar {
   border-left: 1px solid black;
@@ -142,7 +140,11 @@ a {
 }
 
 .powerToughness {
-  padding: 0.25em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 0.25em;
+
   text-align: right;
   background-color: darkgray;
 

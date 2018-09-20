@@ -21,11 +21,13 @@
             <span class="set">{{card.set.name}} ({{card.set.code}}) </span>
         </div>
         <div class="rulesText" [innerHTML]="card.text.replace('\n','<br>') "></div>
-        <div *ngIf="card.power && card.toughness" class="powerToughness">
-            <div class="stats">{{card.power}} / {{card.toughness}} </div>
+        <div  class="powerToughness">
+            <div class="options">
+                <div (click)="toggleSidebar();" class="option" [ngClass]="{'selectedOption':showSidebar, 'unselectedOption':!showSidebar}">Info</div>
+            </div>
+            <div *ngIf="card.power && card.toughness" class="stats">{{card.power}} / {{card.toughness}} </div>
         </div>
     </div>
-
 
     <div class="sideBar" *ngIf="showSidebar">
         <div>
@@ -48,8 +50,6 @@
             </div>
         </div>
     </div>
-    <div class="options">
-        <div (click)="toggleSidebar();"></div>
-    </div>
+
 
 </div>
