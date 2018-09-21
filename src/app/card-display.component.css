@@ -9,7 +9,7 @@
   margin-bottom: 0.5em;
 
   color: white;
-  background-color: rgb(116, 116, 116);
+  background-color: dimgray;
 
   box-shadow: 0.5em 0.5em 1em rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.5s;
@@ -41,7 +41,6 @@ a {
 
 .cardName {
   background-color: darkgray;
-  color: white;
   padding-left: 0.5em;
   padding-right: 0.5em;
   padding-bottom: 0em;
@@ -51,6 +50,7 @@ a {
 
 .options {
   display: flex;
+  justify-content: flex-end;
   height: 100%;
   padding-top: 0.2em;
 }
@@ -86,7 +86,7 @@ a {
 }
 
 .sideBar > .externalLinks > a {
-  background-color: rgb(116, 116, 116);
+  background-color: dimgray;
 }
 
 .colorIdentity {
@@ -115,6 +115,7 @@ a {
 .cardTitle .manaCost {
   padding: 0.3em;
   border-bottom-left-radius: 0.7em;
+  background-color: darkgray;
 }
 
 .typeLine {
@@ -185,7 +186,7 @@ a {
 }
 
 .legalities > div {
-  background-color: rgb(116, 116, 116);
+  background-color: dimgray;
 
   text-align: left;
   width: 100%;

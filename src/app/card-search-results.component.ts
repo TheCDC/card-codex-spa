@@ -18,7 +18,7 @@ export class CardSearchResultsComponent implements OnInit, OnDestroy {
   page: number = 1;
   colorIdentity: string = "";
   json = JSON;
-  isLoading: boolean = false;
+  isLoading: boolean = true;
   subscriptions = [];
 
   constructor(
@@ -28,7 +28,9 @@ export class CardSearchResultsComponent implements OnInit, OnDestroy {
     private router: Router
   ) {
     console.log("CardSearchResultsComponent instantiated");
+  }
 
+  ngOnInit(): void {
     let subMaker = combineLatest(
       this.route.params,
       this.route.queryParams,
@@ -56,8 +58,6 @@ export class CardSearchResultsComponent implements OnInit, OnDestroy {
       this.query();
     });
   }
-
-  ngOnInit(): void {}
 
   query(): void {
     this.cardSearchService
