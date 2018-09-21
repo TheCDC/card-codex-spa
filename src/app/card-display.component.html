@@ -21,7 +21,7 @@
             <span class="set">{{card.set.name}} ({{card.set.code}}) </span>
         </div>
         <div class="rulesText" [innerHTML]="card.text.replace('\n','<br>') "></div>
-        <div  class="powerToughness">
+        <div class="powerToughness">
             <div class="options">
                 <div (click)="toggleSidebar();" class="option" [ngClass]="{'selectedOption':showSidebar, 'unselectedOption':!showSidebar}">Info</div>
             </div>
