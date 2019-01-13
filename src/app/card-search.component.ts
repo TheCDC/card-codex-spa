@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
-import { Subject } from "rxjs/Subject";
+import { Subject, BehaviorSubject } from "rxjs";
 // Observable class extensions
 import "rxjs/add/observable/of";
 // Observable operators
@@ -22,7 +22,7 @@ export class CardSearchComponent implements OnInit {
   cards: Observable<Card[]>;
   filteredNames: Observable<string[]>;
   private searchTerms = new Subject<string>();
-  private nameFilter = new Subject<string>();
+  private nameFilter = new BehaviorSubject<string>('');
   searchInProgress: boolean = false;
   previousTerm: string;
   colors: string[] = "WUBRG".split("");
@@ -30,12 +30,12 @@ export class CardSearchComponent implements OnInit {
   selectedCard: string = "";
 
   constructor(
-    private cardSearchService: CardSearchService,
+    public cardSearchService: CardSearchService,
     private router: Router
   ) {
-    this.filteredNames = this.nameFilter
-      .debounceTime(10)
-      .switchMap(name => {
+    this.nameFilter
+      .debounceTime(100)
+      .map(name => {
         this.searchInProgress = false;
         //return Observable.of<string[]>([]);
 
@@ -50,7 +50,7 @@ export class CardSearchComponent implements OnInit {
         //console.error(error);
         this.searchInProgress = false;
         return Observable.of<string[]>([]);
-      });
+      }).subscribe();
   }
 
   toggleColor(color: string): void {
@@ -73,8 +73,8 @@ export class CardSearchComponent implements OnInit {
     this.selectedCard = "";
     this.searchInProgress = true;
     // Push a search term into the observable stream.
-
-    this.nameFilter.next(name);
+    this.cardSearchService.filter(name);
+    console.log('do component filter');
   }
 
   selectCard(name: string): void {

@@ -6,12 +6,12 @@
   flex-wrap: wrap;
   flex-grow: 1;
   justify-content: center;
-  margin-bottom: 0.5em;
+  margin-bottom: 1em;
 
   color: white;
   background-color: rgb(116, 116, 116);
 
-  box-shadow: 0.5em 0.5em 1em rgba(0, 0, 0, 0.1);
+  box-shadow: 0em 0em 1em rgba(0, 0, 0, 0);
   transition: box-shadow 0.5s;
 }
 
@@ -23,7 +23,7 @@ a {
 }
 
 .cardContainer:hover {
-  box-shadow: 0.5em 0.5em 1em rgba(0, 0, 0, 0.3);
+  box-shadow: 0em 0em 1em rgba(0, 0, 0, 0.5);
   transition: box-shadow 0.5s;
 }
 

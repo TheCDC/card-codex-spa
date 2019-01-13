@@ -10,7 +10,7 @@
                 <div *ngIf="!this.card.colorIdentity?.length > 0" class="colorIdentitySymbols">
                 </div>
             </span>
-            <div [routerLink]="['/similar', card.name, 1]" class="cardName">
+            <div [routerLink]="['/similar', card.name, 1]" class="cardName pointer">
                 {{card.name}}
             </div>
             <span class="manaCost">{{card.manaCost}}</span>

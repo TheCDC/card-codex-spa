@@ -1,110 +1,109 @@
-import { Injectable, OnInit } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Injectable, OnInit } from "@angular/core";
+import { Headers, Http } from "@angular/http";
 
-import { Observable } from 'rxjs';
+import { Observable } from "rxjs";
 // Observable class extensions
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/switchMap';
-import { Subject } from 'rxjs/Subject';
+import "rxjs/add/operator/map";
+import "rxjs/add/observable/of";
+import "rxjs/add/operator/switchMap";
+import "rxjs/add/operator/distinctUntilChanged";
+import "rxjs/add/operator/switchMap";
+import { Subject, BehaviorSubject, combineLatest } from "rxjs";
+// import { combineLatest } from "rxjs/operators";
 
-
-import { Card } from './card';
+import { Card } from "./card";
 
 export class SearchResult {
-	card: Card;
-	results: Card[];
-	constructor(_target_card: Card, _similar_cards: Card[]) {
-		this.card = _target_card;
-		this.results = _similar_cards;
-	}
+  card: Card;
+  results: Card[];
+  constructor(_target_card: Card, _similar_cards: Card[]) {
+    this.card = _target_card;
+    this.results = _similar_cards;
+  }
 }
 
 @Injectable()
 export class CardSearchService {
-	allCardNames: string[] = [];
-	filtered: Observable<string[]>;
-	nameFilter: Subject<string> = new Subject<string>();
-	filterSubscription;
+  allCardNames: BehaviorSubject<string[]> = new BehaviorSubject([]);
+  filtered: BehaviorSubject<string[]> = new BehaviorSubject([]);
+  nameFilter: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  loaded: boolean = false;
+  searchedName$: Subject<string>;
+  headers = new Headers({
+    "Access-Control-Allow-Origin": "*",
+    "Content-Type": "application/json"
+  });
+  constructor(private http: Http) {
+    this.getAllCardNames();
+  }
 
-	headers = new Headers({
-		'Access-Control-Allow-Origin': '*',
-		'Content-Type': 'application/json',
-	});
-	constructor(private http: Http) {
-		this.getAllCardNames().then(
-			names => {
-				this.allCardNames = names;
-				console.log('done downloading all card names');
-				console.log('some card names:' + this.allCardNames.slice(0, 10));
-				this.allCardNames = names;
-				return names;
+  handleError(error: any): Promise<any> {
+    console.error("An error occurred", error);
+    return Promise.reject(error.message || error);
+  }
 
+  getAllCardNames(): void {
+    //download list of card names to use for auto-suggest as user types
 
-			}).catch(this.handleError);
+    console.log("download all card names");
 
-	}
+    this.http
+      .get(
+        "https://card-codex-clone.herokuapp.com/static/card_commander_cardlist.txt"
+      )
+      .map(response => {
+        let names = response.text().split("\n");
 
-	handleError(error: any): Promise<any> {
-		console.error('An error occurred', error);
-		return Promise.reject(error.message || error);
+        console.log("done downloading all card names");
+        console.log("some card names:" + names.slice(0, 10));
+        return names;
+      })
+      .subscribe(names => {
+        this.allCardNames.next(names);
+        this.loaded = true;
+      });
 
-	}
+    combineLatest(this.allCardNames, this.nameFilter).subscribe(
+      ([names, searchedName]) => {
+        let head: string[] = [];
+        let tail: string[] = [];
+        for (let item of names) {
+          let idx = item.toLowerCase().indexOf(searchedName.toLowerCase());
+          if (idx === 0) {
+            head.push(item);
+          } else if (idx !== -1) {
+            tail.push(item);
+          }
+          if (head.length >= 10) {
+            break;
+          }
+        }
+        this.filtered.next(head.concat(tail.slice(0, 10)));
+      }
+    );
+  }
 
-	getAllCardNames(): Promise<string[]> {
-		//download list of card names to use for auto-suggest as user types
+  filter(name: string): void {
+    this.nameFilter.next(name);
+  }
+  searchSimilar(
+    name: string,
+    page: number = 1,
+    colorIdentity: string = ""
+  ): Observable<SearchResult> {
+    let url: string = `https://card-codex-clone.herokuapp.com/api/?card=${name}&page=${page}&ci=${colorIdentity}`;
 
-		console.log('download all card names');
+    if (colorIdentity.length > 0) {
+      url += ``;
+    }
 
-		return this.http.get('https://card-codex-clone.herokuapp.com/static/card_commander_cardlist.txt').toPromise().then(response => {
+    // console.log("name=" + name + " page=" + page + " ci=" + colorIdentity + " " + url);
 
-			let names = response.text().split('\n');
-			return names;
-
-		});
-
-
-	}
-
-	filter(name: string): Observable<string[]> {
-		this.nameFilter.next(name);
-		let head: string[] = [];
-		let tail: string[] = [];
-		for (let item of this.allCardNames) {
-			let idx = item.toLowerCase().indexOf(name.toLowerCase());
-			if (idx === 0) {
-				head.push(item);
-			}
-			else if (idx !== -1) {
-				tail.push(item);
-			}
-			if (head.length >= 10) {
-				break;
-			}
-
-		}
-		return Observable.of<string[]>(head.concat(tail.slice(0, 10)));
-
-	}
-	searchSimilar(name: string, page: number = 1, colorIdentity: string = ''): Observable<SearchResult> {
-
-		let url: string = `https://card-codex-clone.herokuapp.com/api/?card=${name}&page=${page}&ci=${colorIdentity}`;
-
-		if (colorIdentity.length > 0) {
-			url += ``;
-		}
-
-		console.log('name=' + name + ' page=' + page + ' ci=' + colorIdentity + ' ' + url);
-
-		return this.http.get(url)
-			.map(response => {
-				return new SearchResult(
-					response.json().target_card as Card,
-					response.json().similar_cards as Card[],
-				)
-
-			})
-	}
+    return this.http.get(url).map(response => {
+      return new SearchResult(
+        response.json().target_card as Card,
+        response.json().similar_cards as Card[]
+      );
+    });
+  }
 }
