@@ -1,37 +1,35 @@
-<div *ngIf="card" id="search-results-component">
-	<h4> Search Results (pg. {{page}})</h4>
-		<card-display [card]="card"></card-display>
-	<div>
-		<h2>
-			Similar Cards
-		</h2>
-		<nav class="navigation">
-			<div class="breadcrumbs">
-				<button (click)="goBack()">Back to search</button>
-			</div>
-			<div class="pages">
-				<button *ngIf="page-1>0" (click)="previousPage()"> &laquo; {{page-1}} </button>
-				<div>
-					( {{page}} )
-				</div>
-				<button (click)="nextPage()">{{page+1}} &raquo;</button>
-			</div>
-		</nav>
-		<div *ngIf="isLoading">
-			<div class="lds-dual-ring"></div>
-		</div>
-		<cards-list *ngIf="!isLoading" [cards]="cards"></cards-list>
-		<nav class="navigation">
-			<div class="breadcrumbs">
-				<button (click)="goBack()">Back to search</button>
-			</div>
-			<div class="pages">
-				<button *ngIf="page-1>0" (click)="previousPage()"> &laquo; {{page-1}} </button>
-				<div>
-					( {{page}} )
-				</div>
-				<button (click)="nextPage()">{{page+1}} &raquo;</button>
-			</div>
-		</nav>
-	</div>
+<h4>Search Results (pg. {{ page }})</h4>
+
+<div *ngIf="isLoading"><div class="lds-dual-ring"></div></div>
+<div *ngIf="card && !isLoading" id="search-results-component">
+  <card-display [card]="card"></card-display>
+  <div>
+    <h2>Similar Cards</h2>
+    <nav class="navigation">
+      <div class="breadcrumbs">
+        <button (click)="goBack()">Back to search</button>
+      </div>
+      <div class="pages">
+        <button *ngIf="page - 1 > 0" (click)="previousPage()">
+          &laquo; {{ page - 1 }}
+        </button>
+        <div>( {{ page }} )</div>
+        <button (click)="nextPage()">{{ page + 1 }} &raquo;</button>
+      </div>
+    </nav>
+
+    <cards-list *ngIf="!isLoading" [cards]="cards"></cards-list>
+    <nav class="navigation">
+      <div class="breadcrumbs">
+        <button (click)="goBack()">Back to search</button>
+      </div>
+      <div class="pages">
+        <button *ngIf="page - 1 > 0" (click)="previousPage()">
+          &laquo; {{ page - 1 }}
+        </button>
+        <div>( {{ page }} )</div>
+        <button (click)="nextPage()">{{ page + 1 }} &raquo;</button>
+      </div>
+    </nav>
+  </div>
 </div>
