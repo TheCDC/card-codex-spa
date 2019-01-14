@@ -22,6 +22,6 @@ export class Card {
 	subtypes: string[];
 	text: string;
 	set: Set;
-	legalities: Legality[];
+	legalities: any[];
 
 }

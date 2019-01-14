@@ -22,14 +22,14 @@
         </div>
         <div class="rulesText" [innerHTML]="card.text.replace('\n','<br>') "></div>
         <div class="powerToughness">
-            <div class="options">
-                <div (click)="toggleSidebar();" class="option" [ngClass]="{'selectedOption':showSidebar, 'unselectedOption':!showSidebar}">Info</div>
-            </div>
             <div *ngIf="card.power && card.toughness" class="stats">{{card.power}} / {{card.toughness}} </div>
+        </div>
+        <div class="options">
+            <div (click)="toggleSidebar();" class="option" [ngClass]="{'selectedOption':showSidebar, 'unselectedOption':!showSidebar}">Info</div>
         </div>
     </div>
 
-    <div class="sideBar" *ngIf="showSidebar">
+    <div id="sideBar" [ngClass]="{'hidden':!showSidebar}">
         <div>
             Links
         </div>
@@ -41,10 +41,11 @@
                 Gatherer
             </a>
         </div>
+        <div>
+            Legalities:
+        </div>
         <div class="legalities">
-            <div>
-                Legalities:
-            </div>
+            
             <div *ngFor="let legality of card.legalities">
                 <span class="format">{{legality.format}}:</span><span class="legality"> {{legality.legality}}</span>
             </div>

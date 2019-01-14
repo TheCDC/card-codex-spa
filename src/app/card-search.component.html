@@ -1,6 +1,6 @@
 <div id="search-component">
   <h1>Cards!</h1>
-  <div class="searchOptions">
+  <div >
     <div>
       <h2>Search</h2>
       <input #searchBox id="search-box" (keyup)="filter(searchBox.value)" />
@@ -12,17 +12,25 @@
         </div>
       </div>
       <div
-        class="filteredNames"
-        *ngIf="searchBox.value && !selectedCard.length"
-      >
-        <h2>Filtered</h2>
-        <ul>
-          <li *ngFor="let name of (cardSearchService.filtered | async)">
-            <button (click)="selectCard(name)">{{ name }}</button>
-          </li>
-        </ul>
+      class="filteredNames"
+      *ngIf="searchBox.value && !selectedCard.length"
+      style="text-align:left;margin-left:auto;margin-right:auto;"
+    >
+      <h2>Filtered</h2>
+      <div>
+        <div
+          *ngFor="let name of (cardSearchService.filtered | async)"
+          (click)="selectCard(name)"
+          style=""
+          class="pointer cardSuggestion"
+        >
+          {{ name }}
+        </div>
       </div>
     </div>
+    </div>
+
+
     <div>
       <h2>Color identity</h2>
       <div class="colorButtons">
@@ -40,6 +48,6 @@
 
   <div *ngIf="selectedCard.length">
     <h1>{{ selectedCard }}</h1>
-    <button class="doSearchButton" (click)="doSearch()">SEARCH</button>
+    <button class="doSearchButton" (click)="doSearch()">Search</button>
   </div>
 </div>

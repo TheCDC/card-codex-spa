@@ -9,7 +9,7 @@
   margin-bottom: 1em;
 
   color: white;
-  background-color: rgb(116, 116, 116);
+  background-color: dimgray;
 
   box-shadow: 0em 0em 1em rgba(0, 0, 0, 0);
   transition: box-shadow 0.5s;
@@ -41,7 +41,6 @@ a {
 
 .cardName {
   background-color: darkgray;
-  color: white;
   padding-left: 0.5em;
   padding-right: 0.5em;
   padding-bottom: 0em;
@@ -50,42 +49,50 @@ a {
 }
 
 .options {
+  display: flex;
+  justify-content: flex-end;
   height: 100%;
   padding-top: 0.2em;
 }
 
 .options > .option {
   border-top-right-radius: 0.5em;
+  border-top-left-radius: 0.5em;
+
   padding: 0.2em;
+  color: black;
 }
 
 .unselectedOption {
-  background-color: rgb(74, 74, 141);
+  background-color: rgb(84, 162, 252);
 }
 .selectedOption {
-  background-color: rgb(141, 101, 74);
+  background-color: rgb(223, 122, 56);
 }
 
-.sideBar {
-  border-left: 1px solid black;
-  padding: 0.1em;
+#sideBar {
+  background-color: darkgray;
+  padding: 0.2em;
   flex-basis: 25%;
   flex-grow: 1;
+
+
 }
 
-.sideBar {
-  border-left: 1px solid black;
-  padding: 0.1em;
-  flex-basis: 25%;
-  flex-grow: 1;
+#sideBar.hidden{
+  display:none;
 }
 
-.sideBar > .externalLinks {
+#sideBar > .externalLinks {
   text-align: center;
   border-bottom: 0.1em solid rgba(0, 0, 0, 0.5);
   padding: 0.1em;
   display: flex;
   flex-direction: column;
+}
+
+#sideBar > .externalLinks > a {
+  background-color: dimgray;
 }
 
 .colorIdentity {
@@ -113,7 +120,10 @@ a {
 
 .cardTitle .manaCost {
   padding: 0.3em;
+  margin-left: 0.1em;
   border-bottom-left-radius: 0.7em;
+  background-color: darkgray;
+
 }
 
 .typeLine {
@@ -140,9 +150,6 @@ a {
 }
 
 .powerToughness {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   padding-right: 0.25em;
 
   text-align: right;
@@ -187,10 +194,13 @@ a {
 }
 
 .legalities > div {
+  background-color: dimgray;
+
   text-align: left;
   width: 100%;
   display: flex;
   justify-content: space-between;
+  padding: 0.2em;
 }
 
 .legalities > div:nth-child(2n) {

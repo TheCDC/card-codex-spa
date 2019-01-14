@@ -22,7 +22,8 @@ export class CardDisplayComponent implements OnInit {
 		'R': "#FF0000",
 		'G': "#1FAA00"
 	};
-
+	public keys = Object.keys;
+	public JSON=JSON;
 
 	constructor(
 		private cardSearchService: CardSearchService,
@@ -32,6 +33,10 @@ export class CardDisplayComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.sanitizedName = this.card.name.replace("'", "\\'")
+		let oldLegal = this.card.legalities;
+		let ks = Object.keys(oldLegal).map(k => {return {'format':k, 'legality':oldLegal[k]}});
+		this.card.legalities = ks;
+
 
 	}
 
