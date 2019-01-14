@@ -16,7 +16,6 @@
       *ngIf="searchBox.value && !selectedCard.length"
       style="text-align:left;margin-left:auto;margin-right:auto;"
     >
-      <h2>Filtered</h2>
       <div>
         <div
           *ngFor="let name of (cardSearchService.filtered | async)"

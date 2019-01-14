@@ -5,6 +5,11 @@ button{
 
 }
 
+#search-box{
+ width: 80%;
+ font-size: large;
+ margin-bottom: 1em;
+}
 .cardSuggestion {
   width: 100%;
   background-color: #ccccff;
