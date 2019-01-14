@@ -1,6 +1,8 @@
 button{
   padding: 0.4em;
   font-size: large;
+  width: 100%;
+
 }
 
 .cardSuggestion {
