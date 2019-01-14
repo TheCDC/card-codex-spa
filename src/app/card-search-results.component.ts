@@ -43,7 +43,8 @@ export class CardSearchResultsComponent implements OnInit, OnDestroy {
       if (allParams.qparams["ci"] !== undefined) {
         this.colorIdentity = allParams.qparams["ci"].trim();
       } else {
-        console.error("ci undefined!");
+        this.colorIdentity = '';
+
       }
 
       let name = "";

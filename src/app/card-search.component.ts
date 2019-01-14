@@ -39,11 +39,7 @@ export class CardSearchComponent implements OnInit {
         this.searchInProgress = false;
         //return Observable.of<string[]>([]);
 
-        let val = this.cardSearchService.filter(name);
-        if (val === undefined) {
-          console.error("Val is undefined???");
-        }
-        return val;
+        this.cardSearchService.filter(name);
       })
 
       .catch(error => {

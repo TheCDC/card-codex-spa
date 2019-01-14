@@ -14,7 +14,7 @@ export class CardDisplayComponent implements OnInit {
 	@Input() card: Card;
 	colorIdentity: Set<string> = new Set<string>([]);
 	sanitizedName: string = '';
-	showSidebar: boolean = false;
+	hideSidebar: boolean = true;
 	SYMBOLTOCOLOR = {
 		'W': "#FFF9D6",
 		'U': "#5EBEFF",
@@ -46,7 +46,7 @@ export class CardDisplayComponent implements OnInit {
 	}
 	
 	toggleSidebar(): void{
-		this.showSidebar = !this.showSidebar;
+		this.hideSidebar = !this.hideSidebar;
 	}
 
 }
