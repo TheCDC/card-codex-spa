@@ -25,7 +25,7 @@
             <div *ngIf="card.power && card.toughness" class="stats">{{card.power}} / {{card.toughness}} </div>
         </div>
         <div class="options">
-            <div (click)="toggleSidebar();" class="option" [ngClass]="{'selectedOption':!hideSidebar, 'unselectedOption':hideSidebar}">Info</div>
+            <div (click)="toggleSidebar();" class="pointer option" [ngClass]="{'selectedOption':!hideSidebar, 'unselectedOption':hideSidebar}">Info</div>
         </div>
     </div>
 
