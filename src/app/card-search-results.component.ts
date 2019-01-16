@@ -31,33 +31,34 @@ export class CardSearchResultsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    let subMaker = combineLatest(
-      this.route.params,
-      this.route.queryParams,
-      (params, qparams) => {
-        return { params: params, qparams: qparams };
-      }
-    ).subscribe((allParams: Params) => {
-      this.isLoading = true;
+    this.subscriptions.push(
+      combineLatest(
+        this.route.params,
+        this.route.queryParams,
+        (params, qparams) => {
+          return { params: params, qparams: qparams };
+        }
+      ).subscribe((allParams: Params) => {
+        this.isLoading = true;
 
-      if (allParams.qparams["ci"] !== undefined) {
-        this.colorIdentity = allParams.qparams["ci"].trim();
-      } else {
-        this.colorIdentity = '';
+        if (allParams.qparams["ci"] !== undefined) {
+          this.colorIdentity = allParams.qparams["ci"].trim();
+        } else {
+          this.colorIdentity = "";
+        }
 
-      }
-
-      let name = "";
-      if (allParams.params["name"] !== undefined) {
-        this.name = allParams.params["name"];
-      }
-      if (allParams.params["page"] !== undefined) {
-        this.page = +allParams.params["page"];
-      }
-      if (this.page && this.name && this.colorIdentity) {
-      }
-      this.query();
-    });
+        let name = "";
+        if (allParams.params["name"] !== undefined) {
+          this.name = allParams.params["name"];
+        }
+        if (allParams.params["page"] !== undefined) {
+          this.page = +allParams.params["page"];
+        }
+        if (this.page && this.name && this.colorIdentity) {
+        }
+        this.query();
+      })
+    );
   }
 
   query(): void {
