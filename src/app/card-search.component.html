@@ -34,7 +34,7 @@
       <div class="colorButtons">
         <button
           *ngFor="let color of colors"
-          class="colorToggleButton"
+          class="pointer colorToggleButton"
           [ngClass]="{ colorSelected: selectedColors.has(color) }"
           (click)="toggleColor(color)"
         >
