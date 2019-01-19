@@ -1,39 +1,41 @@
-<div id="search-component">
-  <div >
+<div *ngIf="!this.cardSearchService.loaded">
+  <div>Fetching all card names...</div>
+  <div id="bowlG">
+    <div id="bowl_ringG">
+      <div class="ball_holderG"><div class="ballG"></div></div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="this.cardSearchService.loaded" id="search-component">
+  <div>
     <div>
       <h2>Search</h2>
       <input #searchBox id="search-box" (keyup)="filter(searchBox.value)" />
-      <div *ngIf="!this.cardSearchService.loaded">
-        <div id="bowlG">
-          <div id="bowl_ringG">
-            <div class="ball_holderG"><div class="ballG"></div></div>
+
+      <div
+        class="filteredNames"
+        *ngIf="searchBox.value && !selectedCard.length"
+      >
+        <div>
+          <div
+            *ngFor="let name of (cardSearchService.filtered | async)"
+            (click)="selectCard(name)"
+            style=""
+            class="pointer cardSuggestion"
+          >
+            {{ name }}
           </div>
         </div>
       </div>
-      <div
-      class="filteredNames"
-      *ngIf="searchBox.value && !selectedCard.length"
-    >
-      <div>
-        <div
-          *ngFor="let name of (cardSearchService.filtered | async)"
-          (click)="selectCard(name)"
-          style=""
-          class="pointer cardSuggestion"
-        >
-          {{ name }}
-        </div>
-      </div>
     </div>
-    </div>
-
 
     <div>
       <h2>Color identity</h2>
       <div class="colorButtons">
         <button
           *ngFor="let color of colors"
-          class="colorToggleButton"
+          class="pointer colorToggleButton"
           [ngClass]="{ colorSelected: selectedColors.has(color) }"
           (click)="toggleColor(color)"
         >

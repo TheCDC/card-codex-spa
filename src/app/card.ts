@@ -23,5 +23,7 @@ export class Card {
 	text: string;
 	set: Set;
 	legalities: any[];
+	power: number;
+	toughness: number;
 
 }
