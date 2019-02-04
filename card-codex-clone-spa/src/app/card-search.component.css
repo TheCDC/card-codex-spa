@@ -1,0 +1,165 @@
+button{
+  padding: 0.4em;
+  font-size: large;
+  width: 100%;
+
+}
+
+#search-box{
+ width: 80%;
+ font-size: large;
+ margin-bottom: 1em;
+}
+.cardSuggestion {
+  width: 90%;
+  background-color: #ccccff;
+  padding:0.4em;
+  text-align: center;
+  border-radius: 0.3em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.colorToggleButton {
+  text-align: center;
+  width: 2em;
+  height: 2em;
+  font-size: large;
+  background-color: #ffaaaa;
+
+  border-radius: 0.25em;
+  border: 0.1em solid #d8d8d8;
+  margin-left: 0.1em;
+  margin-right: 0.1em;
+  box-shadow: 0.5em 0.5em 1em rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.5s;
+}
+
+
+.colorSelected {
+  background-color: #aaffaa;
+}
+
+.searchOptions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.searchOptions > div {
+  margin: 0.5em;
+}
+/*===================*/
+
+#bowlG {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  margin: auto;
+}
+
+#bowl_ringG {
+  position: absolute;
+  width: 58px;
+  height: 58px;
+  border: 5px solid rgb(0, 0, 0);
+  border-radius: 58px;
+  -o-border-radius: 58px;
+  -ms-border-radius: 58px;
+  -webkit-border-radius: 58px;
+  -moz-border-radius: 58px;
+}
+
+.ball_holderG {
+  position: absolute;
+  width: 16px;
+  height: 58px;
+  left: 21px;
+  top: 0px;
+  animation-name: ball_moveG;
+  -o-animation-name: ball_moveG;
+  -ms-animation-name: ball_moveG;
+  -webkit-animation-name: ball_moveG;
+  -moz-animation-name: ball_moveG;
+  animation-duration: 1.5s;
+  -o-animation-duration: 1.5s;
+  -ms-animation-duration: 1.5s;
+  -webkit-animation-duration: 1.5s;
+  -moz-animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  -o-animation-iteration-count: infinite;
+  -ms-animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -o-animation-timing-function: linear;
+  -ms-animation-timing-function: linear;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+}
+
+.ballG {
+  position: absolute;
+  left: 0px;
+  top: -14px;
+  width: 23px;
+  height: 23px;
+  background: rgb(0, 0, 0);
+  border-radius: 19px;
+  -o-border-radius: 19px;
+  -ms-border-radius: 19px;
+  -webkit-border-radius: 19px;
+  -moz-border-radius: 19px;
+}
+
+@keyframes ball_moveG {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes ball_moveG {
+  0% {
+    -o-transform: rotate(0deg);
+  }
+
+  100% {
+    -o-transform: rotate(360deg);
+  }
+}
+
+@-ms-keyframes ball_moveG {
+  0% {
+    -ms-transform: rotate(0deg);
+  }
+
+  100% {
+    -ms-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes ball_moveG {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes ball_moveG {
+  0% {
+    -moz-transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
