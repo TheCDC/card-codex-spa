@@ -53,6 +53,7 @@ a {
   justify-content: flex-end;
   height: 100%;
   padding-top: 0.2em;
+  font-size: x-large;
 }
 
 .options > .option {
@@ -163,6 +164,7 @@ a {
   min-width: 1em;
   flex-shrink: 0;
   height: 1em;
+  color: black;
 }
 
 .transparent {
@@ -170,7 +172,7 @@ a {
 }
 
 .colorSymbolW {
-  background-color: #fff9d6;
+  background-color: #f3e8a7;
 }
 .colorSymbolU {
   background-color: #5ebeff;

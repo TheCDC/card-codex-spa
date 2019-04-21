@@ -1,56 +1,76 @@
-<div *ngIf="card" class="cardContainer" >
-    <div class="card" (click)="toggleSidebar();">
-
-        <div class="cardTitle">
-            <span class="colorIdentity">
-                <div *ngIf="this.card.colorIdentity?.length>0" class="colorIdentitySymbols">
-                    <span *ngFor="let symbol of this.card.colorIdentity" class="colorSymbol colorSymbol{{symbol}}">
-                    </span>
-                </div>
-                <div *ngIf="!this.card.colorIdentity?.length > 0" class="colorIdentitySymbols">
-                </div>
-            </span>
-            <div [routerLink]="['/similar', card.name, 1]" class="cardName pointer">
-                {{card.name}}
-            </div>
-            <span class="manaCost">{{card.manaCost}}</span>
+<div *ngIf="card" class="cardContainer">
+  <div class="card">
+    <div class="cardTitle">
+      <span class="colorIdentity">
+        <div
+          *ngIf="this.card.colorIdentity?.length > 0"
+          class="colorIdentitySymbols"
+        >
+          <span
+            *ngFor="let symbol of this.card.colorIdentity"
+            class="colorSymbol colorSymbol{{ symbol }}"
+          >{{symbol}}
+          </span>
         </div>
-        <div class="typeLine">
-            <span class="types">{{card.type}} </span>
-            <span> | </span>
-            <span class="set">{{card.set.name}} ({{card.set.code}}) </span>
-        </div>
-        <div class="rulesText" [innerHTML]="card.text.replace('\n','<br>') "></div>
-        <div class="powerToughness">
-            <div *ngIf="card.power && card.toughness" class="stats">{{card.power}} / {{card.toughness}} </div>
-        </div>
-        <div class="options">
-            <div  class="pointer option" [ngClass]="{'selectedOption':!hideSidebar, 'unselectedOption':hideSidebar}">Info</div>
-        </div>
+        <div
+          *ngIf="!this.card.colorIdentity?.length > 0"
+          class="colorIdentitySymbols"
+        ></div>
+      </span>
+      <div [routerLink]="['/similar', card.name, 1]" class="cardName pointer">
+        {{ card.name }}
+      </div>
+      <span class="manaCost">{{ card.manaCost }}</span>
     </div>
-
-    <div id="sideBar" *ngIf="!hideSidebar">
-        <div>
-            Links
-        </div>
-        <div class="externalLinks">
-            <a href="https://scryfall.com/search?q=!&quot;{{card.name}}&quot;">
-                Scryfall
-            </a>
-            <a href="http://gatherer.wizards.com/Pages/Search/Default.aspx?name=+[{{card.name}}]">
-                Gatherer
-            </a>
-        </div>
-        <div>
-            Legalities:
-        </div>
-        <div class="legalities">
-            
-            <div *ngFor="let legality of card.legalities">
-                <span class="format">{{legality.format}}:</span><span class="legality"> {{legality.legality}}</span>
-            </div>
-        </div>
+    <div class="typeLine">
+      <span class="types">{{ card.type }} </span>
+      <span> | </span>
+      <span class="set">{{ card.set.name }} ({{ card.set.code }}) </span>
     </div>
+    <div class="rulesText" [innerHTML]="card.text.replace('\n', '<br>')"></div>
+    <div class="powerToughness">
+      <div *ngIf="card.power && card.toughness" class="stats">
+        {{ card.power }} / {{ card.toughness }}
+      </div>
+    </div>
+    <div class="options">
+      <div
+        (click)="toggleSidebar()"
+        class="pointer option"
+        [ngClass]="{
+          selectedOption: !hideSidebar,
+          unselectedOption: hideSidebar
+        }"
+      >
+        Info
+      </div>
+    </div>
+  </div>
 
-
+  <div id="sideBar" *ngIf="!hideSidebar">
+    <div>
+      Links
+    </div>
+    <div class="externalLinks">
+      <a href="https://scryfall.com/search?q=!&quot;{{ card.name }}&quot;">
+        Scryfall
+      </a>
+      <a
+        href="http://gatherer.wizards.com/Pages/Search/Default.aspx?name=+[{{
+          card.name
+        }}]"
+      >
+        Gatherer
+      </a>
+    </div>
+    <div>
+      Legalities:
+    </div>
+    <div class="legalities">
+      <div *ngFor="let legality of card.legalities">
+        <span class="format">{{ legality.format }}:</span
+        ><span class="legality"> {{ legality.legality }}</span>
+      </div>
+    </div>
+  </div>
 </div>
