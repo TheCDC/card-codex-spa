@@ -15,7 +15,7 @@
   border-bottom-right-radius: 0.2em;
   border-top-left-radius: 0em;
   border-bottom-left-radius: 0em;
-  flex-grow: 1;
+  flex-basis: 10%;
 }
 .doSearchButton {
   padding: 0.4em;
@@ -28,13 +28,14 @@
   width: 100%;
   display: flex;
   flex-wrap: nowrap;
-
   justify-content: center;
+  height: 2em;
 }
 
 #search-box {
-  flex-grow: 9;
   flex-basis: 90%;
+  border-top-right-radius: 0em;
+  border-bottom-right-radius: 0em;
 }
 
 .filteredNames {
