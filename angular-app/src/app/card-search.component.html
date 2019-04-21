@@ -9,10 +9,19 @@
 
 <div *ngIf="this.cardSearchService.loaded" id="search-component">
   <div>
-    <div>
+    <div class="cardNameSelectContainer">
       <h2>Search</h2>
-      <input #searchBox id="search-box" (keyup)="filter(searchBox.value)" />
+      <div id="search-box-container">
 
+        <input
+          #searchBox
+          [ngClass]="{ cardNameSearchComplete: selectedCard }"
+          id="search-box"
+          (keyup)="filterByPartialCardName(searchBox.value)"
+        />
+        <button class="resetSearchQueryButton" (click)="searchBox.value=''">X</button>
+    </div>
+      
       <div
         class="filteredNames"
         *ngIf="searchBox.value && !selectedCard.length"

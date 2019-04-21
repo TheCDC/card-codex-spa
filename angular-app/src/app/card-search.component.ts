@@ -21,8 +21,8 @@ import { Card } from "./card";
 export class CardSearchComponent implements OnInit {
   cards: Observable<Card[]>;
   filteredNames: Observable<string[]>;
-  private searchTerms = new Subject<string>();
   private nameFilter = new BehaviorSubject<string>('');
+  public fullCardNameSelected = new BehaviorSubject<boolean>(false);
   searchInProgress: boolean = false;
   previousTerm: string;
   colors: string[] = "WUBRG".split("");
@@ -65,12 +65,13 @@ export class CardSearchComponent implements OnInit {
     return Array.from(this.selectedColors).join("");
   }
 
-  filter(name: string): void {
+  filterByPartialCardName(name: string): void {
     this.selectedCard = "";
     this.searchInProgress = true;
     // Push a search term into the observable stream.
     this.cardSearchService.filter(name);
     console.log('do component filter');
+    this.selectedCard = '';
   }
 
   selectCard(name: string): void {

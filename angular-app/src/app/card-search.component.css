@@ -1,25 +1,55 @@
-button{
+.cardNameSelectContainer {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cardNameSearchComplete {
+  background-color: #aaffaa;
+}
+
+.resetSearchQueryButton {
+  font-size: large;
+  background-color: lightcoral;
+  border: 0px solid black;
+  flex-basis: 10%;
+  border-top-right-radius: 0.2em;
+  border-bottom-right-radius: 0.2em;
+  border-top-left-radius: 0em;
+  border-bottom-left-radius: 0em;
+
+}
+.doSearchButton {
   padding: 0.4em;
   font-size: large;
   width: 100%;
+}
+
+#search-box-container {
+  font-size: large;
+  width: 100%;
+  display: flex;
+  flex-grow:1;
+  justify-content: center;
 
 }
 
-#search-box{
- width: 80%;
- font-size: large;
- margin-bottom: 1em;
+#search-box {
+  flex-grow: 1;
+
+}
+
+.filteredNames{
+  width: 100%;
 }
 .cardSuggestion {
-  width: 90%;
+  width: 100%;
   background-color: #ccccff;
-  padding:0.4em;
+  padding: 0.4em;
   text-align: center;
   border-radius: 0.3em;
   margin-bottom: 0.5em;
   margin-left: auto;
   margin-right: auto;
-
 }
 .colorToggleButton {
   text-align: center;
@@ -35,7 +65,6 @@ button{
   box-shadow: 0.5em 0.5em 1em rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.5s;
 }
-
 
 .colorSelected {
   background-color: #aaffaa;
