@@ -9,7 +9,7 @@
           <span
             *ngFor="let symbol of this.card.colorIdentity"
             class="colorSymbol colorSymbol{{ symbol }}"
-          >{{symbol}}
+            >{{ symbol }}
           </span>
         </div>
         <div
@@ -52,15 +52,25 @@
       Links
     </div>
     <div class="externalLinks">
-      <a href="https://scryfall.com/search?q=!&quot;{{ card.name }}&quot;">
+      <a
+        target="_blank"
+        href="https://scryfall.com/search?q=!&quot;{{ card.name }}&quot;"
+      >
         Scryfall
       </a>
       <a
+        target="_blank"
         href="http://gatherer.wizards.com/Pages/Search/Default.aspx?name=+[{{
           card.name
         }}]"
       >
         Gatherer
+      </a>
+      <a
+        target="_blank"
+        href="https://www.mtggoldfish.com/q?utf8=✓&query_string={{ card.name }}"
+      >
+        MTGGoldfish
       </a>
     </div>
     <div>

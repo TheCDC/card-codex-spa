@@ -7,6 +7,10 @@
   background-color: #aaffaa;
 }
 
+.cardNameSearchFailed{
+  background-color: coral;
+}
+
 .resetSearchQueryButton {
   font-size: large;
   background-color: lightcoral;

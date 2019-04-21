@@ -14,7 +14,10 @@
       <div id="search-box-container">
         <input
           #searchBox
-          [ngClass]="{ cardNameSearchComplete: selectedCard }"
+          [ngClass]="{
+            cardNameSearchComplete: selectedCard,
+            cardNameSearchFailed: (cardSearchService.filtered | async).length == 0
+          }"
           id="search-box"
           (keyup)="filterByPartialCardName(searchBox.value)"
         />
@@ -30,7 +33,7 @@
         <div>
           <div
             *ngFor="let name of (cardSearchService.filtered | async)"
-            (click)="selectCard(name)"
+            (click)="selectCard(name);searchBox.value=name;"
             style=""
             class="pointer cardSuggestion"
           >
